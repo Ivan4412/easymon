@@ -1,2 +1,2 @@
 # easymon
-监控系统
+easymon监控系统
