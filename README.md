@@ -10,15 +10,15 @@ easymon监控平台提供业务层面数据监控服务，为各系统负责人�
 ## 2. 配置参数
 配置数据库地址:
  -  /resources/system.properties
-    ![image](src\main\resources\img\DBconfig.png)
+    ![image](src/main/resources/img/DBconfig.png)
     
 配置系统发件邮箱:
  -  /resources/system.properties
-    ![image](src\main\resources\img\email.png)
+    ![image](src/main/resources/img/email.png)
     
 配置短信服务商：
  -  /resources/system.properties
-    ![image](src\main\resources\img\smsConfig.png)
+    ![image](src/main/resources/img/smsConfig.png)
 
 ## 3. 配置任务
 - 配置目前数据库源：t_datasource表
