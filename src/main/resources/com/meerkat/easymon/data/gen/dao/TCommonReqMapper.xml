@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meerkat.easymon.data.gen.dao.TCommonReqMapper" >
+  <resultMap id="BaseResultMap" type="com.meerkat.easymon.data.gen.model.TCommonReq" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="app_id" property="appId" jdbcType="VARCHAR" />
+    <result column="interface_name" property="interfaceName" jdbcType="VARCHAR" />
+    <result column="is_success" property="isSuccess" jdbcType="SMALLINT" />
+    <result column="req_content" property="reqContent" jdbcType="VARCHAR" />
+    <result column="rsp_content" property="rspContent" jdbcType="VARCHAR" />
+    <result column="return_code" property="returnCode" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, app_id, interface_name, is_success, req_content, rsp_content, return_code, remark, 
+    created_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.meerkat.easymon.data.gen.model.TCommonReqExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_common_req
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_common_req
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_common_req
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.meerkat.easymon.data.gen.model.TCommonReqExample" >
+    delete from t_common_req
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.meerkat.easymon.data.gen.model.TCommonReq" >
+    insert into t_common_req (id, app_id, interface_name, 
+      is_success, req_content, rsp_content, 
+      return_code, remark, created_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{appId,jdbcType=VARCHAR}, #{interfaceName,jdbcType=VARCHAR}, 
+      #{isSuccess,jdbcType=SMALLINT}, #{reqContent,jdbcType=VARCHAR}, #{rspContent,jdbcType=VARCHAR}, 
+      #{returnCode,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.meerkat.easymon.data.gen.model.TCommonReq" >
+    insert into t_common_req
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="appId != null" >
+        app_id,
+      </if>
+      <if test="interfaceName != null" >
+        interface_name,
+      </if>
+      <if test="isSuccess != null" >
+        is_success,
+      </if>
+      <if test="reqContent != null" >
+        req_content,
+      </if>
+      <if test="rspContent != null" >
+        rsp_content,
+      </if>
+      <if test="returnCode != null" >
+        return_code,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createdTime != null" >
+        created_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="appId != null" >
+        #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="interfaceName != null" >
+        #{interfaceName,jdbcType=VARCHAR},
+      </if>
+      <if test="isSuccess != null" >
+        #{isSuccess,jdbcType=SMALLINT},
+      </if>
+      <if test="reqContent != null" >
+        #{reqContent,jdbcType=VARCHAR},
+      </if>
+      <if test="rspContent != null" >
+        #{rspContent,jdbcType=VARCHAR},
+      </if>
+      <if test="returnCode != null" >
+        #{returnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.meerkat.easymon.data.gen.model.TCommonReqExample" resultType="java.lang.Integer" >
+    select count(*) from t_common_req
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_common_req
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.appId != null" >
+        app_id = #{record.appId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.interfaceName != null" >
+        interface_name = #{record.interfaceName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isSuccess != null" >
+        is_success = #{record.isSuccess,jdbcType=SMALLINT},
+      </if>
+      <if test="record.reqContent != null" >
+        req_content = #{record.reqContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rspContent != null" >
+        rsp_content = #{record.rspContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.returnCode != null" >
+        return_code = #{record.returnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdTime != null" >
+        created_time = #{record.createdTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_common_req
+    set id = #{record.id,jdbcType=BIGINT},
+      app_id = #{record.appId,jdbcType=VARCHAR},
+      interface_name = #{record.interfaceName,jdbcType=VARCHAR},
+      is_success = #{record.isSuccess,jdbcType=SMALLINT},
+      req_content = #{record.reqContent,jdbcType=VARCHAR},
+      rsp_content = #{record.rspContent,jdbcType=VARCHAR},
+      return_code = #{record.returnCode,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      created_time = #{record.createdTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meerkat.easymon.data.gen.model.TCommonReq" >
+    update t_common_req
+    <set >
+      <if test="appId != null" >
+        app_id = #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="interfaceName != null" >
+        interface_name = #{interfaceName,jdbcType=VARCHAR},
+      </if>
+      <if test="isSuccess != null" >
+        is_success = #{isSuccess,jdbcType=SMALLINT},
+      </if>
+      <if test="reqContent != null" >
+        req_content = #{reqContent,jdbcType=VARCHAR},
+      </if>
+      <if test="rspContent != null" >
+        rsp_content = #{rspContent,jdbcType=VARCHAR},
+      </if>
+      <if test="returnCode != null" >
+        return_code = #{returnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meerkat.easymon.data.gen.model.TCommonReq" >
+    update t_common_req
+    set app_id = #{appId,jdbcType=VARCHAR},
+      interface_name = #{interfaceName,jdbcType=VARCHAR},
+      is_success = #{isSuccess,jdbcType=SMALLINT},
+      req_content = #{reqContent,jdbcType=VARCHAR},
+      rsp_content = #{rspContent,jdbcType=VARCHAR},
+      return_code = #{returnCode,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select resultMap="BaseResultMap" parameterType="com.meerkat.easymon.data.gen.model.TCommonReqExample" id="selectByExampleWithRowbounds" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_common_req
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>

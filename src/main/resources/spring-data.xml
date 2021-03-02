@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd   
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd   
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd   
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd">
+
+	<description>数据层配置</description>
+
+	<!-- 数据源配置 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="${DB.JDBC_URL}" />
+		<property name="username" value="${DB.USERNAME}" />
+		<property name="password" value="${DB.PASSWORD}" />
+		<property name="initialSize" value="50"/>
+        <property name="maxActive" value="500"/>
+        <property name="maxIdle" value="500"/>
+        <property name="testOnBorrow" value="true"/>  
+		<property name="validationQuery" value="select 1"/> 
+	</bean>
+
+	<!-- 事务配置 -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- 没有必要在 Spring 的 XML 配置文件中注册所有的映射器。相反,你可以使用一个 MapperScannerConfigurer 
+		, 它 将 会 查 找 类 路 径 下 的 映 射 器 并 自 动 将 它 们 创 建 成 MapperFactoryBean。 如果你使 用了一个 
+		以上的 DataSource ,那 么自动 装配可 能会失效 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage"
+			value="com.meerkat.easymon.data.gen.dao,com.meerkat.easymon.data.ext.dao" />
+	</bean>
+</beans>

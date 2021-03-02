@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meerkat.easymon.data.gen.dao.TMonitRuleMapper" >
+  <resultMap id="BaseResultMap" type="com.meerkat.easymon.data.gen.model.TMonitRule" >
+    <id column="rule_id" property="ruleId" jdbcType="VARCHAR" />
+    <result column="datesource_id" property="datesourceId" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="expected_result" property="expectedResult" jdbcType="VARCHAR" />
+    <result column="rule_desc" property="ruleDesc" jdbcType="VARCHAR" />
+    <result column="trigger_type" property="triggerType" jdbcType="SMALLINT" />
+    <result column="trigger_interval" property="triggerInterval" jdbcType="INTEGER" />
+    <result column="cron_expression" property="cronExpression" jdbcType="VARCHAR" />
+    <result column="message" property="message" jdbcType="VARCHAR" />
+    <result column="is_vaild" property="isVaild" jdbcType="SMALLINT" />
+    <result column="creater" property="creater" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="updater" property="updater" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="send_type" property="sendType" jdbcType="SMALLINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    rule_id, datesource_id, type, content, expected_result, rule_desc, trigger_type, 
+    trigger_interval, cron_expression, message, is_vaild, creater, create_time, updater, 
+    update_time, send_type
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.meerkat.easymon.data.gen.model.TMonitRuleExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_monit_rule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_monit_rule
+    where rule_id = #{ruleId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_monit_rule
+    where rule_id = #{ruleId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.meerkat.easymon.data.gen.model.TMonitRuleExample" >
+    delete from t_monit_rule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.meerkat.easymon.data.gen.model.TMonitRule" >
+    insert into t_monit_rule (rule_id, datesource_id, type, 
+      content, expected_result, rule_desc, 
+      trigger_type, trigger_interval, cron_expression, 
+      message, is_vaild, creater, 
+      create_time, updater, update_time, 
+      send_type)
+    values (#{ruleId,jdbcType=VARCHAR}, #{datesourceId,jdbcType=BIGINT}, #{type,jdbcType=VARCHAR}, 
+      #{content,jdbcType=VARCHAR}, #{expectedResult,jdbcType=VARCHAR}, #{ruleDesc,jdbcType=VARCHAR}, 
+      #{triggerType,jdbcType=SMALLINT}, #{triggerInterval,jdbcType=INTEGER}, #{cronExpression,jdbcType=VARCHAR}, 
+      #{message,jdbcType=VARCHAR}, #{isVaild,jdbcType=SMALLINT}, #{creater,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{sendType,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.meerkat.easymon.data.gen.model.TMonitRule" >
+    insert into t_monit_rule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ruleId != null" >
+        rule_id,
+      </if>
+      <if test="datesourceId != null" >
+        datesource_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="expectedResult != null" >
+        expected_result,
+      </if>
+      <if test="ruleDesc != null" >
+        rule_desc,
+      </if>
+      <if test="triggerType != null" >
+        trigger_type,
+      </if>
+      <if test="triggerInterval != null" >
+        trigger_interval,
+      </if>
+      <if test="cronExpression != null" >
+        cron_expression,
+      </if>
+      <if test="message != null" >
+        message,
+      </if>
+      <if test="isVaild != null" >
+        is_vaild,
+      </if>
+      <if test="creater != null" >
+        creater,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updater != null" >
+        updater,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="sendType != null" >
+        send_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ruleId != null" >
+        #{ruleId,jdbcType=VARCHAR},
+      </if>
+      <if test="datesourceId != null" >
+        #{datesourceId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="expectedResult != null" >
+        #{expectedResult,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleDesc != null" >
+        #{ruleDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="triggerType != null" >
+        #{triggerType,jdbcType=SMALLINT},
+      </if>
+      <if test="triggerInterval != null" >
+        #{triggerInterval,jdbcType=INTEGER},
+      </if>
+      <if test="cronExpression != null" >
+        #{cronExpression,jdbcType=VARCHAR},
+      </if>
+      <if test="message != null" >
+        #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="isVaild != null" >
+        #{isVaild,jdbcType=SMALLINT},
+      </if>
+      <if test="creater != null" >
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null" >
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendType != null" >
+        #{sendType,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.meerkat.easymon.data.gen.model.TMonitRuleExample" resultType="java.lang.Integer" >
+    select count(*) from t_monit_rule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_monit_rule
+    <set >
+      <if test="record.ruleId != null" >
+        rule_id = #{record.ruleId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.datesourceId != null" >
+        datesource_id = #{record.datesourceId,jdbcType=BIGINT},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.content != null" >
+        content = #{record.content,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expectedResult != null" >
+        expected_result = #{record.expectedResult,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ruleDesc != null" >
+        rule_desc = #{record.ruleDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.triggerType != null" >
+        trigger_type = #{record.triggerType,jdbcType=SMALLINT},
+      </if>
+      <if test="record.triggerInterval != null" >
+        trigger_interval = #{record.triggerInterval,jdbcType=INTEGER},
+      </if>
+      <if test="record.cronExpression != null" >
+        cron_expression = #{record.cronExpression,jdbcType=VARCHAR},
+      </if>
+      <if test="record.message != null" >
+        message = #{record.message,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isVaild != null" >
+        is_vaild = #{record.isVaild,jdbcType=SMALLINT},
+      </if>
+      <if test="record.creater != null" >
+        creater = #{record.creater,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updater != null" >
+        updater = #{record.updater,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sendType != null" >
+        send_type = #{record.sendType,jdbcType=SMALLINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_monit_rule
+    set rule_id = #{record.ruleId,jdbcType=VARCHAR},
+      datesource_id = #{record.datesourceId,jdbcType=BIGINT},
+      type = #{record.type,jdbcType=VARCHAR},
+      content = #{record.content,jdbcType=VARCHAR},
+      expected_result = #{record.expectedResult,jdbcType=VARCHAR},
+      rule_desc = #{record.ruleDesc,jdbcType=VARCHAR},
+      trigger_type = #{record.triggerType,jdbcType=SMALLINT},
+      trigger_interval = #{record.triggerInterval,jdbcType=INTEGER},
+      cron_expression = #{record.cronExpression,jdbcType=VARCHAR},
+      message = #{record.message,jdbcType=VARCHAR},
+      is_vaild = #{record.isVaild,jdbcType=SMALLINT},
+      creater = #{record.creater,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      updater = #{record.updater,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      send_type = #{record.sendType,jdbcType=SMALLINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meerkat.easymon.data.gen.model.TMonitRule" >
+    update t_monit_rule
+    <set >
+      <if test="datesourceId != null" >
+        datesource_id = #{datesourceId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="expectedResult != null" >
+        expected_result = #{expectedResult,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleDesc != null" >
+        rule_desc = #{ruleDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="triggerType != null" >
+        trigger_type = #{triggerType,jdbcType=SMALLINT},
+      </if>
+      <if test="triggerInterval != null" >
+        trigger_interval = #{triggerInterval,jdbcType=INTEGER},
+      </if>
+      <if test="cronExpression != null" >
+        cron_expression = #{cronExpression,jdbcType=VARCHAR},
+      </if>
+      <if test="message != null" >
+        message = #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="isVaild != null" >
+        is_vaild = #{isVaild,jdbcType=SMALLINT},
+      </if>
+      <if test="creater != null" >
+        creater = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null" >
+        updater = #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendType != null" >
+        send_type = #{sendType,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where rule_id = #{ruleId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meerkat.easymon.data.gen.model.TMonitRule" >
+    update t_monit_rule
+    set datesource_id = #{datesourceId,jdbcType=BIGINT},
+      type = #{type,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      expected_result = #{expectedResult,jdbcType=VARCHAR},
+      rule_desc = #{ruleDesc,jdbcType=VARCHAR},
+      trigger_type = #{triggerType,jdbcType=SMALLINT},
+      trigger_interval = #{triggerInterval,jdbcType=INTEGER},
+      cron_expression = #{cronExpression,jdbcType=VARCHAR},
+      message = #{message,jdbcType=VARCHAR},
+      is_vaild = #{isVaild,jdbcType=SMALLINT},
+      creater = #{creater,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      updater = #{updater,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      send_type = #{sendType,jdbcType=SMALLINT}
+    where rule_id = #{ruleId,jdbcType=VARCHAR}
+  </update>
+  <select resultMap="BaseResultMap" parameterType="com.meerkat.easymon.data.gen.model.TMonitRuleExample" id="selectByExampleWithRowbounds" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_monit_rule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>

@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meerkat.easymon.data.gen.dao.TRuleReceiverMapper" >
+  <resultMap id="BaseResultMap" type="com.meerkat.easymon.data.gen.model.TRuleReceiver" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="receiver_id" property="receiverId" jdbcType="VARCHAR" />
+    <result column="rule_id" property="ruleId" jdbcType="VARCHAR" />
+    <result column="is_mail" property="isMail" jdbcType="SMALLINT" />
+    <result column="is_telephone" property="isTelephone" jdbcType="SMALLINT" />
+    <result column="weChat_addr" property="wechatAddr" jdbcType="VARCHAR" />
+    <result column="creater" property="creater" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="updater" property="updater" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, receiver_id, rule_id, is_mail, is_telephone, weChat_addr, creater, create_time, 
+    updater, update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.meerkat.easymon.data.gen.model.TRuleReceiverExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_rule_receiver
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_rule_receiver
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_rule_receiver
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.meerkat.easymon.data.gen.model.TRuleReceiverExample" >
+    delete from t_rule_receiver
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.meerkat.easymon.data.gen.model.TRuleReceiver" >
+    insert into t_rule_receiver (id, receiver_id, rule_id, 
+      is_mail, is_telephone, weChat_addr, 
+      creater, create_time, updater, 
+      update_time)
+    values (#{id,jdbcType=BIGINT}, #{receiverId,jdbcType=VARCHAR}, #{ruleId,jdbcType=VARCHAR}, 
+      #{isMail,jdbcType=SMALLINT}, #{isTelephone,jdbcType=SMALLINT}, #{wechatAddr,jdbcType=VARCHAR}, 
+      #{creater,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.meerkat.easymon.data.gen.model.TRuleReceiver" >
+    insert into t_rule_receiver
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="receiverId != null" >
+        receiver_id,
+      </if>
+      <if test="ruleId != null" >
+        rule_id,
+      </if>
+      <if test="isMail != null" >
+        is_mail,
+      </if>
+      <if test="isTelephone != null" >
+        is_telephone,
+      </if>
+      <if test="wechatAddr != null" >
+        weChat_addr,
+      </if>
+      <if test="creater != null" >
+        creater,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updater != null" >
+        updater,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="receiverId != null" >
+        #{receiverId,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleId != null" >
+        #{ruleId,jdbcType=VARCHAR},
+      </if>
+      <if test="isMail != null" >
+        #{isMail,jdbcType=SMALLINT},
+      </if>
+      <if test="isTelephone != null" >
+        #{isTelephone,jdbcType=SMALLINT},
+      </if>
+      <if test="wechatAddr != null" >
+        #{wechatAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null" >
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null" >
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.meerkat.easymon.data.gen.model.TRuleReceiverExample" resultType="java.lang.Integer" >
+    select count(*) from t_rule_receiver
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_rule_receiver
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.receiverId != null" >
+        receiver_id = #{record.receiverId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ruleId != null" >
+        rule_id = #{record.ruleId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isMail != null" >
+        is_mail = #{record.isMail,jdbcType=SMALLINT},
+      </if>
+      <if test="record.isTelephone != null" >
+        is_telephone = #{record.isTelephone,jdbcType=SMALLINT},
+      </if>
+      <if test="record.wechatAddr != null" >
+        weChat_addr = #{record.wechatAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creater != null" >
+        creater = #{record.creater,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updater != null" >
+        updater = #{record.updater,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_rule_receiver
+    set id = #{record.id,jdbcType=BIGINT},
+      receiver_id = #{record.receiverId,jdbcType=VARCHAR},
+      rule_id = #{record.ruleId,jdbcType=VARCHAR},
+      is_mail = #{record.isMail,jdbcType=SMALLINT},
+      is_telephone = #{record.isTelephone,jdbcType=SMALLINT},
+      weChat_addr = #{record.wechatAddr,jdbcType=VARCHAR},
+      creater = #{record.creater,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      updater = #{record.updater,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meerkat.easymon.data.gen.model.TRuleReceiver" >
+    update t_rule_receiver
+    <set >
+      <if test="receiverId != null" >
+        receiver_id = #{receiverId,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleId != null" >
+        rule_id = #{ruleId,jdbcType=VARCHAR},
+      </if>
+      <if test="isMail != null" >
+        is_mail = #{isMail,jdbcType=SMALLINT},
+      </if>
+      <if test="isTelephone != null" >
+        is_telephone = #{isTelephone,jdbcType=SMALLINT},
+      </if>
+      <if test="wechatAddr != null" >
+        weChat_addr = #{wechatAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null" >
+        creater = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null" >
+        updater = #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meerkat.easymon.data.gen.model.TRuleReceiver" >
+    update t_rule_receiver
+    set receiver_id = #{receiverId,jdbcType=VARCHAR},
+      rule_id = #{ruleId,jdbcType=VARCHAR},
+      is_mail = #{isMail,jdbcType=SMALLINT},
+      is_telephone = #{isTelephone,jdbcType=SMALLINT},
+      weChat_addr = #{wechatAddr,jdbcType=VARCHAR},
+      creater = #{creater,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      updater = #{updater,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select resultMap="BaseResultMap" parameterType="com.meerkat.easymon.data.gen.model.TRuleReceiverExample" id="selectByExampleWithRowbounds" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_rule_receiver
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>
